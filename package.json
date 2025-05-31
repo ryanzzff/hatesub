@@ -17,9 +17,14 @@
 		"test:e2e": "playwright test",
 		"db:push": "drizzle-kit push",
 		"db:migrate": "drizzle-kit migrate",
-		"db:studio": "drizzle-kit studio"
+		"db:studio": "drizzle-kit studio",
+		"db:generate": "drizzle-kit generate",
+		"db:d1:dev": "wrangler d1 execute hatesub-dev --local --file=./drizzle/0000_black_guardsmen.sql",
+		"db:d1:prod": "wrangler d1 execute hatesub-prod --remote --file=./drizzle/0000_black_guardsmen.sql",
+		"wrangler:dev": "wrangler pages dev build --compatibility-date=2024-09-02"
 	},
 	"devDependencies": {
+		"@cloudflare/workers-types": "^4.20250531.0",
 		"@eslint/compat": "^1.2.5",
 		"@eslint/js": "^9.18.0",
 		"@playwright/test": "^1.49.1",
@@ -55,7 +60,7 @@
 		"@node-rs/argon2": "^2.0.2",
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
-		"drizzle-orm": "^0.40.0"
+		"drizzle-orm": "^0.40.1"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [

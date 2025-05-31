@@ -1,0 +1,22 @@
+name = "hatesub"
+compatibility_date = "2024-09-02"
+compatibility_flags = ["nodejs_compat"]
+
+pages_build_output_dir = "build"
+
+[env.development]
+[[env.development.d1_databases]]
+binding = "DB"
+database_name = "hatesub-dev"
+database_id = "a378e189-537c-42d9-8e32-0911692ffcdd"
+
+[env.production]
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "hatesub-prod"
+database_id = "37a56589-1549-4e1c-a935-ed5593a18eee"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "hatesub-dev"
+database_id = "a378e189-537c-42d9-8e32-0911692ffcdd"

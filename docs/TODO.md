@@ -1,13 +1,13 @@
 # HateSub - Technical TODO List
 
 ## 🚀 Setup & Infrastructure (S1-S8)
-- [ ] S1. Initialize SvelteKit project
-- [ ] S2. Configure TailwindCSS with mobile-first approach
-- [ ] S3. Set up project structure
-- [ ] S4. Configure TypeScript
-- [ ] S5. Set up ESLint and Prettier
-- [ ] S6. Initialize Git repository
-- [ ] S7. Set up Cloudflare D1 database
+- [x] S1. Initialize SvelteKit project
+- [x] S2. Configure TailwindCSS with mobile-first approach
+- [x] S3. Set up project structure
+- [x] S4. Configure TypeScript
+- [x] S5. Set up ESLint and Prettier
+- [x] S6. Initialize Git repository
+- [x] S7. Set up Cloudflare D1 database
 - [ ] S8. Configure user authentication system
 
 ## 🎯 Core Development (MVP) (C1-C13)
