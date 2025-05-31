@@ -21,7 +21,9 @@
 		"db:generate": "drizzle-kit generate",
 		"db:d1:dev": "wrangler d1 execute hatesub-dev --local --file=./drizzle/0000_black_guardsmen.sql",
 		"db:d1:prod": "wrangler d1 execute hatesub-prod --remote --file=./drizzle/0000_black_guardsmen.sql",
-		"wrangler:dev": "wrangler pages dev build --compatibility-date=2024-09-02"
+		"wrangler:dev": "wrangler pages dev build --compatibility-date=2024-09-02",
+		"mcp:test": "node scripts/test-mcp.mjs",
+		"issues:create": "node scripts/create-issues.mjs"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250531.0",
