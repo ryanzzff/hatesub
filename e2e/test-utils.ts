@@ -1,14 +1,26 @@
-import { Page } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 
 /**
  * Test utilities for authentication testing
  */
 
 /**
- * Generates a unique test email
+ * Generates a unique test email using the domain from FROM_EMAIL in .env
+ * if available, otherwise falls back to example.test
  */
 export function generateTestEmail(prefix = 'user'): string {
-  return `${prefix}.${Date.now()}@example.test`;
+  // Extract domain from FROM_EMAIL environment variable if available
+  const fromEmail = process.env.FROM_EMAIL || '';
+  let domain = 'example.test';
+  
+  if (fromEmail && fromEmail.includes('@')) {
+    const emailParts = fromEmail.split('@');
+    if (emailParts.length === 2 && emailParts[1]) {
+      domain = emailParts[1];
+    }
+  }
+  
+  return `${prefix}.${Date.now()}@${domain}`;
 }
 
 /**

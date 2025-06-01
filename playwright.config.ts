@@ -1,4 +1,11 @@
 import { defineConfig } from '@playwright/test';
+import * as dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Make sure environment variables are available in workers
+process.env.FROM_EMAIL = process.env.FROM_EMAIL || '';
 
 export default defineConfig({
 	webServer: {
