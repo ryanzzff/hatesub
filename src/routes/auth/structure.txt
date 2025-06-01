@@ -1,0 +1,19 @@
++layout.svelte
++page.svelte
+login/
+  +page.svelte
+  +page.server.ts
+register/
+  +page.svelte
+  +page.server.ts
+verify-email/
+  +page.svelte
+  +page.server.ts
+forgot-password/
+  +page.svelte
+  +page.server.ts
+reset-password/
+  +page.svelte
+  +page.server.ts
+logout/
+  +page.server.ts
