@@ -20,9 +20,9 @@ export async function sendVerificationEmail(email: string, token: string) {
 		// Try to use configured FROM_EMAIL, but fall back to Resend shared email if domain isn't verified
 		let fromEmail = FROM_EMAIL;
 		// Check if it's likely a custom domain that might not be verified
-		if (fromEmail !== 'onboarding@resend.dev' && !fromEmail.includes('resend.dev')) {
-			console.log(`Using custom FROM_EMAIL: ${fromEmail} (make sure it's verified in Resend)`);
-		}
+		// if (fromEmail !== 'onboarding@resend.dev' && !fromEmail.includes('resend.dev')) {
+		// 	console.log(`Using custom FROM_EMAIL: ${fromEmail} (make sure it's verified in Resend)`);
+		// }
 
 		const { data, error } = await resend.emails.send({
 			from: fromEmail,
@@ -62,9 +62,9 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 		// Try to use configured FROM_EMAIL, but fall back to Resend shared email if domain isn't verified
 		let fromEmail = FROM_EMAIL;
 		// Check if it's likely a custom domain that might not be verified
-		if (fromEmail !== 'onboarding@resend.dev' && !fromEmail.includes('resend.dev')) {
-			console.log(`Using custom FROM_EMAIL: ${fromEmail} (make sure it's verified in Resend)`);
-		}
+		// if (fromEmail !== 'onboarding@resend.dev' && !fromEmail.includes('resend.dev')) {
+		// 	console.log(`Using custom FROM_EMAIL: ${fromEmail} (make sure it's verified in Resend)`);
+		// }
 
 		const { data, error } = await resend.emails.send({
 			from: fromEmail,
