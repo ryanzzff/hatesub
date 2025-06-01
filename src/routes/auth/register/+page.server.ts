@@ -11,6 +11,7 @@ import {
 	normalizeEmail,
 	generateUserId 
 } from '$lib/server/auth-utils';
+import { sendVerificationEmail } from '$lib/server/email';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -97,6 +98,7 @@ export const actions: Actions = {
 		});
 
 		try {
+			console.log(`Starting registration for user: ${username} / ${normalizedEmail}`);
 			await db.insert(table.user).values({ 
 				id: userId, 
 				email: normalizedEmail,
@@ -110,8 +112,16 @@ export const actions: Actions = {
 			// Create email verification token
 			const verificationToken = await auth.createEmailVerificationToken(userId, normalizedEmail);
 			
-			// TODO: Send verification email
-			console.log('Email verification token:', verificationToken);
+			// Send verification email
+			try {
+				const emailResult = await sendVerificationEmail(normalizedEmail, verificationToken);
+				if (!emailResult.success) {
+					console.warn('Failed to send verification email:', emailResult.error);
+				}
+			} catch (emailError) {
+				console.error('Exception sending verification email:', emailError);
+				// We'll still continue with registration even if email fails
+			}
 
 			const sessionToken = auth.generateSessionToken();
 			const session = await auth.createSession(sessionToken, userId);

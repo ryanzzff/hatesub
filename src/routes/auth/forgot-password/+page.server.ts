@@ -4,6 +4,7 @@ import * as auth from '$lib/server/auth';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
 import { validateEmail, normalizeEmail } from '$lib/server/auth-utils';
+import { sendPasswordResetEmail } from '$lib/server/email';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -51,8 +52,11 @@ export const actions: Actions = {
 			// Create new password reset token
 			const resetToken = await auth.createPasswordResetToken(existingUser.id);
 
-			// TODO: Send password reset email
-			console.log('Password reset token for', normalizedEmail, ':', resetToken);
+			// Send password reset email
+			const emailResult = await sendPasswordResetEmail(normalizedEmail, resetToken);
+			if (!emailResult.success) {
+				console.warn('Failed to send password reset email:', emailResult.error);
+			}
 
 			return {
 				success: true,

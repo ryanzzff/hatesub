@@ -3,6 +3,7 @@ import { eq } from 'drizzle-orm';
 import * as auth from '$lib/server/auth';
 import { db } from '$lib/server/db';
 import * as table from '$lib/server/db/schema';
+import { sendVerificationEmail } from '$lib/server/email';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -84,8 +85,12 @@ export const actions: Actions = {
 				event.locals.user.email
 			);
 
-			// TODO: Send verification email
-			console.log('New email verification token:', verificationToken);
+			// Send verification email
+			const emailResult = await sendVerificationEmail(event.locals.user.email, verificationToken);
+			if (!emailResult.success) {
+				console.warn('Failed to send verification email:', emailResult.error);
+				return fail(500, { message: 'Failed to send verification email. Please try again.' });
+			}
 
 			return {
 				success: true,
