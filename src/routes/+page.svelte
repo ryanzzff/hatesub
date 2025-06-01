@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	// This page will redirect on the server side based on authentication status
+</script>
+
+<div class="flex items-center justify-center h-screen">
+	<p class="text-gray-600">Redirecting...</p>
+</div>
