@@ -4,3 +4,26 @@ pnpm-lock.yaml
 yarn.lock
 bun.lock
 bun.lockb
+
+# Documentation files
+docs/
+*.md
+CLAUDE.md
+README.md
+
+# Configuration files
+.vscode/
+.claude/
+drizzle/meta/
+project.inlang/
+.prettierrc
+
+# Scripts and utilities
+scripts/
+
+# Test files (if needed)
+# e2e/
+
+# Test reports and artifacts
+test-results/
+playwright-report/

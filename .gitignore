@@ -30,3 +30,5 @@ vite.config.ts.timestamp-*
 src/lib/paraglide
 
 playwright-report/
+
+.claude/settings.local.json
