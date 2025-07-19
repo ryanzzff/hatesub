@@ -35,7 +35,7 @@ export async function sendVerificationEmail(email: string, token: string) {
 		if (error) {
 			console.error('Email sending error:', error);
 			// Output the verification URL to console for testing
-			console.log(`🔗 Verification URL: ${verificationUrl}`);
+			console.log(`🔗 Verification URL: ${BASE_URL}/auth/verify-email?token=[REDACTED]`);
 			return { success: false, error: error.message };
 		}
 
