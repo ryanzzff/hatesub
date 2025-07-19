@@ -15,6 +15,13 @@
       "when": 1748723273867,
       "tag": "0001_nifty_salo",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1752940575933,
+      "tag": "0002_amazing_grim_reaper",
+      "breakpoints": true
     }
   ]
 }
