@@ -77,7 +77,7 @@ export const actions: Actions = {
 		try {
 			await db.insert(table.user).values({ 
 				id: userId, 
-				email: `${username}@example.com`, // Demo email
+				email: `${username}@demo.localhost`, // Demo email
 				username, 
 				passwordHash 
 			});
