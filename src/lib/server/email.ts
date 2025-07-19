@@ -77,7 +77,7 @@ export async function sendPasswordResetEmail(email: string, token: string) {
 		if (error) {
 			console.error('Email sending error:', error);
 			// Output the reset URL to console for testing
-			console.log(`🔗 Reset URL: ${resetUrl}`);
+			console.log(`🔗 Reset URL: ${BASE_URL}/auth/reset-password?token=[REDACTED]`);
 			return { success: false, error: error.message };
 		}
 
