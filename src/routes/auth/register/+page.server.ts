@@ -98,7 +98,9 @@ export const actions: Actions = {
 		});
 
 		try {
-			console.log(`Starting registration for user: ${username} / ${normalizedEmail}`);
+			if (process.env.NODE_ENV !== 'production') {
+				console.log('Starting registration for a new user');
+			}
 			await db.insert(table.user).values({ 
 				id: userId, 
 				email: normalizedEmail,
