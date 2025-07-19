@@ -6,8 +6,8 @@ export const user = sqliteTable('user', {
 	username: text('username').notNull().unique(),
 	passwordHash: text('password_hash').notNull(),
 	emailVerified: integer('email_verified', { mode: 'boolean' }).notNull().default(false),
-	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(new Date()),
-	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(new Date())
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`)
 });
 
 export const session = sqliteTable('session', {
