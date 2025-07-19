@@ -1,4 +1,5 @@
 import { sqliteTable, integer, text, real } from 'drizzle-orm/sqlite-core';
+import { sql } from 'drizzle-orm';
 
 export const user = sqliteTable('user', {
 	id: text('id').primaryKey(),
@@ -38,7 +39,7 @@ export const category = sqliteTable('category', {
 	description: text('description'),
 	icon: text('icon'),
 	color: text('color'),
-	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(new Date())
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`)
 });
 
 export const subscription = sqliteTable('subscription', {
@@ -56,8 +57,8 @@ export const subscription = sqliteTable('subscription', {
 	valueRating: integer('value_rating'), // 1-5 scale
 	status: text('status').notNull().default('active'), // 'active', 'cancelled', 'paused'
 	notes: text('notes'),
-	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(new Date()),
-	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(new Date())
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`)
 });
 
 export const userPreference = sqliteTable('user_preference', {
@@ -67,8 +68,8 @@ export const userPreference = sqliteTable('user_preference', {
 	timezone: text('timezone').notNull().default('UTC'),
 	notificationEmail: integer('notification_email', { mode: 'boolean' }).notNull().default(true),
 	notificationPush: integer('notification_push', { mode: 'boolean' }).notNull().default(false),
-	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(new Date()),
-	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(new Date())
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().default(sql`CURRENT_TIMESTAMP`)
 });
 
 export type Session = typeof session.$inferSelect;

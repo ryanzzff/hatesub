@@ -1,9 +1,35 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { db } from './index';
 import { subscription, category, userPreference, user } from './schema';
 import { nanoid } from 'nanoid';
+import { sql } from 'drizzle-orm';
 
 describe('Database Schema', () => {
+	beforeEach(async () => {
+		// Clean up test data before each test (delete in order of dependencies)
+		// Use try-catch to handle cases where foreign keys might prevent deletion
+		try {
+			await db.delete(subscription);
+		} catch (e) {
+			// Ignore foreign key constraint errors during cleanup
+		}
+		try {
+			await db.delete(userPreference);
+		} catch (e) {
+			// Ignore foreign key constraint errors during cleanup
+		}
+		try {
+			await db.delete(category);
+		} catch (e) {
+			// Ignore foreign key constraint errors during cleanup
+		}
+		try {
+			await db.delete(user);
+		} catch (e) {
+			// Ignore foreign key constraint errors during cleanup
+		}
+	});
+
 	it('should create subscription with all required fields', async () => {
 		const testUserId = nanoid();
 		const testCategoryId = nanoid();
@@ -11,8 +37,8 @@ describe('Database Schema', () => {
 		// Create test user first
 		await db.insert(user).values({
 			id: testUserId,
-			email: 'test@example.com',
-			username: 'testuser',
+			email: `test-${testUserId}@example.com`,
+			username: `testuser-${testUserId}`,
 			passwordHash: 'test-hash',
 			emailVerified: true
 		});
@@ -20,7 +46,7 @@ describe('Database Schema', () => {
 		// Create test category
 		await db.insert(category).values({
 			id: testCategoryId,
-			name: 'Entertainment',
+			name: `Entertainment-${testCategoryId}`,
 			description: 'Entertainment subscriptions',
 			icon: '🎬',
 			color: '#ff6b6b'
@@ -36,7 +62,7 @@ describe('Database Schema', () => {
 			currency: 'USD',
 			billingCycle: 'monthly',
 			renewalDate: new Date('2025-08-01'),
-			category: 'Entertainment',
+			category: `Entertainment-${testCategoryId}`,
 			subscriptionReason: 'Family entertainment',
 			usageRating: 5,
 			valueRating: 4,
@@ -59,8 +85,8 @@ describe('Database Schema', () => {
 		// Create test user first
 		await db.insert(user).values({
 			id: testUserId,
-			email: 'test2@example.com',
-			username: 'testuser2',
+			email: `test2-${testUserId}@example.com`,
+			username: `testuser2-${testUserId}`,
 			passwordHash: 'test-hash',
 			emailVerified: true
 		});
@@ -98,9 +124,10 @@ describe('Database Schema', () => {
 	});
 
 	it('should validate category uniqueness', async () => {
+		const categoryId = nanoid();
 		const categoryData = {
-			id: nanoid(),
-			name: 'Productivity',
+			id: categoryId,
+			name: `Productivity-${categoryId}`,
 			description: 'Productivity tools'
 		};
 
@@ -110,7 +137,7 @@ describe('Database Schema', () => {
 		// Second insertion with same name should fail
 		const duplicateCategory = {
 			id: nanoid(),
-			name: 'Productivity',
+			name: `Productivity-${categoryId}`,
 			description: 'Different description'
 		};
 
