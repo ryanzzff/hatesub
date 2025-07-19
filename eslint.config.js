@@ -11,6 +11,20 @@ const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
 
 export default ts.config(
 	includeIgnoreFile(gitignorePath),
+	{
+		// Additional ignore patterns for ESLint
+		ignores: [
+			'docs/**',
+			'scripts/**',
+			'**/*.md',
+			'drizzle/meta/**',
+			'project.inlang/**',
+			'.vscode/**',
+			'.claude/**',
+			'test-results/**',
+			'playwright-report/**'
+		]
+	},
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs.recommended,

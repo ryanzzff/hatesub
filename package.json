@@ -39,6 +39,7 @@
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/svelte": "^5.2.4",
 		"@types/node": "^22",
+		"dotenv": "^16.5.0",
 		"drizzle-kit": "^0.30.2",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -62,7 +63,8 @@
 		"@node-rs/argon2": "^2.0.2",
 		"@oslojs/crypto": "^1.0.1",
 		"@oslojs/encoding": "^1.1.0",
-		"drizzle-orm": "^0.40.1"
+		"drizzle-orm": "^0.40.1",
+		"resend": "^4.5.1"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
